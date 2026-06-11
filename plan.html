@@ -16,6 +16,9 @@
     <!-- AOS Animation -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
     <!-- 네이버 지도 API -->
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=nticxunj9s"></script>
 
@@ -1093,6 +1096,111 @@
             line-height: 1.8;
         }
 
+        /* 인테리어 갤러리 스타일 */
+        .interior-gallery {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding: 0 20px;
+        }
+
+        .interior-gallery h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .interior-gallery h3 i {
+            color: var(--primary-color);
+            margin-right: 12px;
+        }
+
+        .interior-swiper {
+            width: 100%;
+            padding: 20px 0 60px;
+        }
+
+        .interior-swiper .swiper-slide {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.5s ease;
+            transform: scale(0.85);
+            opacity: 0.6;
+        }
+
+        .interior-swiper .swiper-slide-active {
+            transform: scale(1);
+            opacity: 1;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+        }
+
+        .interior-swiper .swiper-slide:hover {
+            transform: scale(0.9);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .interior-swiper .swiper-slide-active:hover {
+            transform: scale(1.02);
+        }
+
+        .interior-slide-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .interior-swiper .swiper-slide-active .interior-slide-image {
+            height: 500px;
+        }
+
+        .interior-slide-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .interior-slide-info h4 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+
+        .interior-slide-info p {
+            font-size: 14px;
+            color: var(--gray-color);
+        }
+
+        .interior-swiper .swiper-button-next,
+        .interior-swiper .swiper-button-prev {
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .interior-swiper .swiper-button-next:after,
+        .interior-swiper .swiper-button-prev:after {
+            font-size: 20px;
+        }
+
+        .interior-swiper .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            opacity: 0.3;
+        }
+
+        .interior-swiper .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: var(--accent-gold);
+        }
+
         /* VR 기능 스타일 */
         .vr-features {
             display: grid;
@@ -1595,11 +1703,9 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- 59타입 Tab Content -->
-        <div class="main-tab-content" id="type59">
-            <div class="district-content">
+            <!-- 59타입 Content -->
+            <div class="district-content" id="type59">
                 <div class="land-hero" style="margin-bottom: 40px;">
                     <h2>59㎡ 타입 평면도</h2>
                     <p class="land-subtitle">공급면적 59.97㎡ / 전용면적 49.92㎡</p>
@@ -1667,67 +1773,147 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
         <!-- 인테리어 Tab Content -->
         <div class="main-tab-content" id="interior">
             <div class="land-intro">
-                <div class="land-hero" data-aos="fade-up">
-                    <h2>인테리어 디자인</h2>
-                    <p class="land-subtitle">모던하고 실용적인 공간 연출</p>
-                    <p class="land-description">
-                        세련된 디자인과 기능성을 모두 갖춘 인테리어로 입주 즉시 편안한 생활이 가능합니다.
-                        공간의 효율성을 극대화하고 미적 감각을 더한 디자인입니다.
-                    </p>
-                </div>
+                <!-- 인테리어 갤러리 -->
+                <div class="interior-gallery">
+                    <h3><i class="fas fa-images"></i> 인테리어 갤러리</h3>
+                    <div class="swiper interior-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- 49타입 -->
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 거실.png" alt="49타입 거실" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 거실</h4>
+                                    <p>넓고 밝은 거실 공간</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 주방.png" alt="49타입 주방" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 주방</h4>
+                                    <p>시스템 주방가구</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 침실-1.png" alt="49타입 침실1" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 침실 1</h4>
+                                    <p>안락한 주침실</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 침실-2.png" alt="49타입 침실2" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 침실 2</h4>
+                                    <p>편안한 공간 연출</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 욕실-1.png" alt="49타입 욕실1" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 욕실 1</h4>
+                                    <p>모던한 욕실</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 욕실-2.png" alt="49타입 욕실2" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 욕실 2</h4>
+                                    <p>깨끗한 공간</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 현관.png" alt="49타입 현관" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 현관</h4>
+                                    <p>현관 중문 및 신발장</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/49인테리어 복도 중문.png" alt="49타입 복도 중문" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>49타입 복도 중문</h4>
+                                    <p>공간 분리 중문</p>
+                                </div>
+                            </div>
 
-                <div class="interior-details" data-aos="fade-up" data-aos-delay="100">
-                    <div class="interior-section">
-                        <div class="section-number">01</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-paint-roller"></i> 화이트 톤 인테리어</h3>
-                            <p>깔끔하고 밝은 화이트 톤의 벽지와 바닥재로 공간을 넓어 보이게 하고, 어떤 가구와도 잘 어울리는 베이직 컬러를 사용했습니다.</p>
+                            <!-- 59타입 -->
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 거실.png" alt="59타입 거실" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 거실</h4>
+                                    <p>넓고 밝은 거실 공간</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 주방.png" alt="59타입 주방" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 주방</h4>
+                                    <p>시스템 주방가구</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 침실-1.png" alt="59타입 침실1" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 침실 1</h4>
+                                    <p>안락한 주침실</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 침실-2.png" alt="59타입 침실2" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 침실 2</h4>
+                                    <p>편안한 공간 연출</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 침실-3.png" alt="59타입 침실3" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 침실 3</h4>
+                                    <p>아늑한 침실</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 욕실-1.png" alt="59타입 욕실1" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 욕실 1</h4>
+                                    <p>모던한 욕실</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 욕실-2.png" alt="59타입 욕실2" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 욕실 2</h4>
+                                    <p>깨끗한 공간</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 현관.png" alt="59타입 현관" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 현관</h4>
+                                    <p>현관 중문 및 신발장</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="Asset/59인테리어 복도 중문.png" alt="59타입 복도 중문" class="interior-slide-image">
+                                <div class="interior-slide-info">
+                                    <h4>59타입 복도 중문</h4>
+                                    <p>공간 분리 중문</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="interior-section">
-                        <div class="section-number">02</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-layer-group"></i> 고급 원목 마루</h3>
-                            <p>내구성이 뛰어난 원목 무늬 강화마루를 시공하여 고급스러우면서도 관리가 편리합니다. 거실과 방 모두 동일한 마루로 통일감을 줍니다.</p>
-                        </div>
-                    </div>
+                        <!-- Navigation buttons -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
 
-                    <div class="interior-section">
-                        <div class="section-number">03</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-lightbulb"></i> LED 조명 시스템</h3>
-                            <p>거실, 주방, 침실 등 각 공간의 용도에 맞는 LED 매입등과 간접조명을 설치하여 쾌적하고 분위기 있는 실내 환경을 조성합니다.</p>
-                        </div>
-                    </div>
-
-                    <div class="interior-section">
-                        <div class="section-number">04</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-door-closed"></i> 시스템 도어 및 샷시</h3>
-                            <p>단열과 방음 성능이 우수한 시스템 샷시와 모던한 디자인의 시스템 도어를 적용하여 쾌적한 주거 환경을 제공합니다.</p>
-                        </div>
-                    </div>
-
-                    <div class="interior-section">
-                        <div class="section-number">05</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-kitchen-set"></i> 시스템 주방가구</h3>
-                            <p>효율적인 수납 공간과 세련된 디자인을 갖춘 시스템 주방가구가 설치되어 있으며, 싱크대와 상하부장이 포함되어 있습니다.</p>
-                        </div>
-                    </div>
-
-                    <div class="interior-section">
-                        <div class="section-number">06</div>
-                        <div class="section-content">
-                            <h3><i class="fas fa-shoe-prints"></i> 현관 중문 및 신발장</h3>
-                            <p>현관에 중문과 신발장을 설치하여 실내 공간을 보호하고 수납 공간을 확보했습니다. 방문객의 프라이버시도 보호합니다.</p>
-                        </div>
+                        <!-- Pagination -->
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
             </div>
@@ -1929,6 +2115,7 @@
 
     <!-- AOS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <script>
         // Initialize AOS
@@ -1937,6 +2124,54 @@
             once: true,
             offset: 100
         });
+
+        // Initialize Swiper (will be initialized when tab is shown)
+        let interiorSwiper = null;
+
+        function initInteriorSwiper() {
+            if (!interiorSwiper) {
+                interiorSwiper = new Swiper('.interior-swiper', {
+                    slidesPerView: 1.2,
+                    spaceBetween: 20,
+                    centeredSlides: true,
+                    loop: true,
+                    loopedSlides: 17,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                        dynamicBullets: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slideToClickedSlide: true,
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2.5,
+                            spaceBetween: 20,
+                            centeredSlides: true,
+                        },
+                        1024: {
+                            slidesPerView: 3.5,
+                            spaceBetween: 30,
+                            centeredSlides: true,
+                        },
+                        1400: {
+                            slidesPerView: 4,
+                            spaceBetween: 30,
+                            centeredSlides: true,
+                        }
+                    }
+                });
+            } else {
+                interiorSwiper.update();
+            }
+        }
 
         // GNB 서브메뉴 제어 (1depth 메뉴에만 반응)
         const gnbItems = document.querySelectorAll('#gnb > li');
@@ -1974,6 +2209,8 @@
 
         mainTabButtons.forEach(button => {
             button.addEventListener('click', () => {
+                console.log('Tab button clicked:', button.getAttribute('data-maintab'));
+
                 // Remove active class from all main tab buttons and contents
                 mainTabButtons.forEach(btn => btn.classList.remove('active'));
                 mainTabContents.forEach(content => content.classList.remove('active'));
@@ -1983,11 +2220,26 @@
 
                 // Show corresponding main tab content
                 const mainTabId = button.getAttribute('data-maintab');
-                document.getElementById(mainTabId).classList.add('active');
+                const targetContent = document.getElementById(mainTabId);
+
+                console.log('Target content element:', targetContent);
+
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                } else {
+                    console.error('Content element not found for:', mainTabId);
+                }
 
                 // Initialize map if location tab is activated
                 if (mainTabId === 'location') {
                     setTimeout(loadLocationMap, 100);
+                }
+
+                // Initialize Swiper if interior tab is activated
+                if (mainTabId === 'interior') {
+                    setTimeout(() => {
+                        initInteriorSwiper();
+                    }, 100);
                 }
 
                 // Reset AOS animations for new content
@@ -2076,6 +2328,13 @@
                 if (targetButton && targetContent) {
                     targetButton.classList.add('active');
                     targetContent.classList.add('active');
+
+                    // Initialize Swiper if interior tab
+                    if (targetHash === 'interior') {
+                        setTimeout(() => {
+                            initInteriorSwiper();
+                        }, 100);
+                    }
 
                     // Reset AOS animations
                     AOS.refresh();

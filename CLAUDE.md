@@ -1,395 +1,39 @@
 # 사이버 모델하우스 프로젝트
 
+## ⚠️ 중요: AI 작업 시 필독 사항
+
+**이 프로젝트는 완성된 상태입니다. 아래 규칙을 반드시 준수하세요:**
+
+### 🚫 절대 금지 사항
+1. **코드 자동 수정 금지**: 사용자가 명시적으로 요청하지 않은 코드 변경 절대 금지
+2. **구조 변경 금지**: HTML 구조, CSS 레이아웃, JavaScript 로직 임의 변경 금지
+3. **라이브러리 변경 금지**: 현재 사용 중인 CDN/로컬 라이브러리 버전 유지
+4. **색상 변경 금지**: 정의된 컬러 스킴(Premium Navy & Champagne Gold) 고수
+5. **파일 추가/삭제 금지**: 기존 파일 구조 유지
+
+### ✅ 허용되는 작업
+1. **사용자 명시 요청**: 사용자가 구체적으로 요청한 수정만 진행
+2. **버그 수정**: 명백한 오류(오타, 깨진 링크 등)는 사용자에게 제안 후 수정
+3. **정보 제공**: 코드 설명, 구조 분석, 문제 진단 등
+
+### 📋 작업 프로세스
+```
+1. 사용자 요청 확인
+2. 현재 코드 상태 파악 (CLAUDE.md 참고)
+3. 수정 계획 수립
+4. 사용자에게 수정안 제시 및 승인 요청
+5. 승인 후 수정 실행
+6. 변경 사항 CLAUDE.md에 기록
+```
+
+---
+
 ## 📋 프로젝트 정보
 - **프로젝트명**: 토지임대부 분양주택 사이버 모델하우스
-- **파일**: index.html (메인), about.html (사업개요)
-- **메인 컬러**: 파란색 #6B4E50
+- **GitHub**: https://github.com/jihun4170aa/samda-promo_test2.git
+- **상태**: 완성 (Version 3.0.0)
+- **메인 컬러**: Premium Navy (#1B2A4E) & Champagne Gold (#D4AF7A)
 - **폰트**: Noto Sans KR (300, 400, 500, 700, 900)
-
----
-
-## 🎯 헤더 표준 (모든 HTML 파일 공통)
-
-**중요: 새로운 HTML 파일 생성 시 반드시 index.html의 헤더 구조를 기준으로 작성**
-
-### HTML 구조
-```html
-<header class="headerWrap">
-    <div class="header">
-        <div class="logo">
-            <a href="index.html">
-                <img src="Asset/공사 한글로고(개정)-좌우조합.png" alt="제주특별자치도개발공사">
-            </a>
-        </div>
-        <nav>
-            <ul id="gnb">
-                <!-- GNB 메뉴 -->
-                <div class="submenu-area">
-                    <div class="submenu-container">
-                        <!-- 서브메뉴 -->
-                    </div>
-                </div>
-            </ul>
-        </nav>
-    </div>
-</header>
-```
-
-### CSS 설정
-```css
-.headerWrap {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    transition: all 0.3s ease;
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.header {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 20px 80px 20px 40px;
-    display: grid;
-    grid-template-columns: 500px 1fr 150px;
-    gap: 40px;
-    align-items: center;
-}
-
-.logo {
-    height: 50px;
-    width: 200px;
-    padding-right: 500px;
-    z-index: 10;
-}
-
-.logo img {
-    height: 100%;
-    padding: 0px;
-}
-
-#gnb > li > a {
-    display: block;
-    padding: 10px 0;
-    text-align: center;
-}
-
-.submenu-container {
-    max-width: 1900px;
-    margin: 0 auto;
-    padding: 40px 80px 40px 40px;
-    display: grid;
-    grid-template-columns: 500px 1fr 150px;
-    gap: 40px;
-}
-```
-
----
-
-## 🎨 디자인 수정 이력
-
-### Version 2.0.0 (2026-05-30)
-**[fullPage.js 2.9.7 구현 - 전체 페이지 스크롤 시스템 적용]**
-- fullPage.js 2.9.7 (jQuery 기반) 로컬 라이브러리 적용
-- 좌측 네비게이션 도트 추가 (툴팁: 메인, 단지정보, VR, 로케이션, Footer)
-- 섹션별 앵커 설정: home, unit, vr, location, footer
-- AOS 애니메이션 비활성화 (fullPage.js와 충돌로 인해)
-- 푸터를 fullPage 컨테이너 내부로 이동 (fp-auto-height 적용)
-- 모바일(768px 이하)에서 자동으로 일반 스크롤로 전환
-
-**영향 범위:**
-- index.html - 전체 구조 변경
-
-**HTML 구조 변경:**
-```html
-<div id="fullpage">
-    <div class="section main_visual" id="section1">...</div>
-    <div class="section unit-section" id="section2">...</div>
-    <div class="section vr-section" id="section3">...</div>
-    <div class="section location-section" id="section4">...</div>
-    <div class="section fp-auto-height" id="section5">
-        <footer>...</footer>
-    </div>
-</div>
-```
-
-**CSS 변경:**
-- `.section`: position: relative만 유지 (fullPage.js가 높이 관리)
-- `.section-inner`: 메인 비주얼에만 사용, flex 중앙정렬
-- `.unit_wrap`, `.vr-content`, `.inner_location`: 각각 flex + min-height: 100vh로 중앙정렬
-
-**JavaScript 설정:**
-```javascript
-$('#fullpage').fullpage({
-    navigation: true,
-    navigationPosition: 'left',
-    navigationTooltips: ['메인', '단지정보', 'VR', '로케이션', 'Footer'],
-    anchors: ['home', 'unit', 'vr', 'location', 'footer'],
-    scrollingSpeed: 700,
-    responsiveWidth: 768
-});
-```
-
-**주의사항:**
-- ⚠️ AOS 애니메이션 비활성화됨 (`disable: true`)
-- ⚠️ scrollOverflow 플러그인 로드되지만 비활성화 (버전 호환 문제)
-- ⚠️ 섹션 id와 anchor 이름 다름 (충돌 방지)
-- ⚠️ 푸터 위치 변경으로 기존 CSS 스타일 영향 없음
-
-**백업 파일:**
-- `index_v2.0.0_fullpage_20260530_171126.html`
-
----
-
-### Version 1.2.0 (2026-05-28)
-**[평면도 이미지 확대 모달 추가]**
-- Unit 섹션의 평면도 이미지 클릭 시 확대 모달 표시
-- 모달 닫기 기능: X 버튼, 배경 클릭, ESC 키
-- 부드러운 페이드 인/아웃 애니메이션
-- 모달 열릴 때 body 스크롤 방지
-
-**영향 범위:**
-- index.html - Unit 섹션, 모달 추가
-
-**추가된 요소:**
-- `.image-modal` - 모달 오버레이
-- `.image-modal-content` - 모달 콘텐츠 컨테이너
-- `.image-modal-close` - 닫기 버튼
-- `@keyframes zoomIn` - 줌인 애니메이션
-- 이미지 클릭 이벤트 리스너
-
-**CSS 변경:**
-- `.unit-card img`: `cursor: pointer` 추가, 호버 시 `opacity: 0.8`
-
----
-
-### Version 1.1.0 (2026-05-28)
-**[네이버 지도 API 연동]**
-- Location 섹션에 네이버 지도 추가
-- 지도에 마커 및 인포윈도우 표시
-- "오시는 길" 섹션 추가 (주소, 전화번호)
-- 카카오맵 → 네이버 지도로 변경 (비즈앱 등록 이슈)
-
-**영향 범위:**
-- index.html - Location 섹션
-- 네이버 Maps API SDK 추가 (Client ID: `nticxunj9s`)
-
-**추가된 요소:**
-- `.map-section` - 지도 컨테이너
-- `.map-info` - 주소/전화번호 정보
-- `#map` - 네이버 지도 표시 영역 (300px 높이)
-- 마커 위치: 제주시 삼도이동 1244-1 (좌표: 33.5137, 126.5219)
-- 줌 컨트롤 추가 (우측 상단)
-
----
-
-### Version 1.0.0 (2026-05-28)
-**초기 버전**
-- 메인 비주얼, 평면도, VR, 로케이션, Footer 섹션 구성
-- 메인 컬러: 빨간색 → 파란색으로 변경
-- GNB 2depth 메뉴 구조 (호버 시 전체 서브메뉴 노출)
-- 모바일 햄버거 메뉴 (왼쪽 슬라이드)
-- 플로팅 전화 버튼
-- 스크롤 스냅 (proximity)
-
-**주요 스타일:**
-- 헤더 그리드: `200px 1fr 150px` (로고 | GNB | 전화번호)
-- GNB 그리드: `repeat(4, 1fr)` (4칸 균등 배치)
-- 서브메뉴 그리드: `200px 1fr 150px` → 중앙 `repeat(4, 1fr)`
-- 섹션: `min-height: 100vh` + `scroll-snap-align: start`
-- Unit 섹션: 이미지 높이 400px, padding 30px
-
----
-
-## ⚠️ 디자인 수정 전 체크리스트
-
-디자인 관련 수정 요청 시 **반드시 아래 항목을 확인**하고 수정 전 사용자에게 제안합니다:
-
-### 1. 레이아웃 변경
-- [ ] 헤더/푸터 높이 변경
-- [ ] 섹션 구조 변경
-- [ ] 그리드/플렉스 레이아웃 변경
-- [ ] 반응형 브레이크포인트 변경
-
-### 2. 색상 변경
-- [ ] 메인 컬러 변경 (현재: #3895D3)
-- [ ] 배경색 변경
-- [ ] 텍스트 색상 변경
-- [ ] 호버 효과 색상 변경
-
-### 3. 타이포그래피
-- [ ] 폰트 크기 변경
-- [ ] 폰트 굵기 변경
-- [ ] 행간(line-height) 변경
-- [ ] 자간(letter-spacing) 변경
-
-### 4. 간격/여백
-- [ ] padding 변경
-- [ ] margin 변경
-- [ ] gap 변경
-- [ ] 섹션 간 여백 변경
-
-### 5. 애니메이션/효과
-- [ ] AOS 효과 변경
-- [ ] 스크롤 효과 변경
-- [ ] 호버 효과 변경
-- [ ] 트랜지션 속도 변경
-
-### 6. 컴포넌트
-- [ ] 버튼 스타일 변경
-- [ ] 카드 디자인 변경
-- [ ] 슬라이더 설정 변경
-- [ ] 메뉴 구조 변경
-
----
-
-## 🔧 주요 설정값
-
-### 색상 변수
-```css
---primary-color: #3895D3;
---primary-hover: #2a7ab8;
---primary-light: #e3f2fd;
---dark-color: #1a1a1a;
---gray-color: #666;
---light-gray: #f8f9fa;
-```
-
-### 헤더 구조
-```css
-.header {
-    grid-template-columns: 200px 1fr 150px;
-    gap: 40px;
-}
-
-#gnb {
-    grid-template-columns: repeat(4, 1fr);
-}
-
-.submenu-container {
-    grid-template-columns: 200px 1fr 150px;
-    gap: 40px;
-}
-```
-
-### 섹션 설정
-```css
-section {
-    min-height: 100vh;
-    scroll-snap-align: start;
-}
-
-html {
-    scroll-snap-type: y proximity;
-}
-```
-
-### Unit 섹션
-```css
-.unit-card img {
-    height: 400px;
-}
-
-.unit-info {
-    padding: 30px;
-}
-
-.section-header {
-    margin-bottom: 50px;
-}
-```
-
----
-
-## 📝 수정 요청 시 응답 형식
-
-디자인 수정 요청을 받으면:
-
-1. **현재 상태 확인**: 해당 부분의 현재 CSS 값 확인
-2. **수정안 제시**: 구체적인 변경 내용과 CSS 코드 제시
-3. **영향 범위 설명**: 다른 요소에 미칠 영향 설명
-4. **사용자 확인**: "이렇게 수정할까요?" 질문 후 승인 받기
-5. **수정 실행**: 승인 후 수정 진행
-6. **버전 업데이트**: CLAUDE.md에 변경 이력 기록
-
----
-
-## 📌 중요 규칙
-
-- ✅ **수정 전 반드시 사용자 확인 필수**
-- ✅ 모든 디자인 변경은 이 파일에 기록
-- ✅ 버전 번호는 Semantic Versioning 사용
-  - Major: 큰 구조 변경
-  - Minor: 기능 추가/변경
-  - Patch: 디자인 미세 조정/버그 수정
-
----
-
-## 🔄 형상 관리 프로세스
-
-### 1. 태스크 기반 개발
-모든 작업은 TODO.md에서 관리합니다:
-1. TODO.md에서 작업할 태스크 선정
-2. 태스크를 "진행 중"으로 이동
-3. 작업 완료 후 "완료"로 이동
-4. CLAUDE.md에 변경 이력 기록
-
-### 2. 버전 관리 규칙
-**버전 번호**: `Major.Minor.Patch`
-
-- **Major (1.x.x)**:
-  - 전체 레이아웃 구조 변경
-  - 메뉴 시스템 대폭 수정
-  - 섹션 추가/삭제
-
-- **Minor (x.1.x)**:
-  - 새로운 기능 추가 (문의하기 폼, 갤러리 등)
-  - 애니메이션 효과 추가
-  - API 연동
-
-- **Patch (x.x.1)**:
-  - 디자인 미세 조정 (색상, 간격, 폰트 크기)
-  - 버그 수정
-  - 텍스트 수정
-
-### 3. 변경 이력 작성 형식
-```markdown
-### Version X.X.X (YYYY-MM-DD)
-**[태스크명]**
-- 변경 내용 1
-- 변경 내용 2
-
-**영향 범위:**
-- 영향받은 파일/섹션
-
-**CSS 변경:**
-- 클래스명: 변경 전 → 변경 후
-```
-
-### 4. 디자인 수정 워크플로우
-```
-사용자 요청
-    ↓
-CLAUDE.md 현재 설정 확인
-    ↓
-수정안 제시 + 영향 범위 설명
-    ↓
-사용자 승인 대기
-    ↓
-수정 실행
-    ↓
-TODO.md 업데이트
-    ↓
-CLAUDE.md 변경 이력 기록
-    ↓
-버전 번호 업데이트
-```
-
-### 5. 백업 규칙
-- Major 버전 변경 전: 반드시 index.html 백업
-- 백업 파일명: `index_v{버전번호}_backup_{YYYYMMDD}.html`
 
 ---
 
@@ -397,21 +41,316 @@ CLAUDE.md 변경 이력 기록
 
 ```
 6조2/
-├── index.html                      # 메인 파일
-├── CLAUDE.md                       # 프로젝트 설정 및 형상 관리 가이드
-├── TODO.md                         # 태스크 관리
-├── Asset/
-│   ├── 49실내.png
-│   ├── 59실내.png
-│   ├── 조감도.png
+├── index.html                      # 메인 페이지 (fullPage.js 적용)
+├── about.html                      # 사업안내 페이지
+├── unit.html                       # 단지정보 페이지
+├── plan.html                       # 세대안내 페이지 (인테리어 갤러리 포함)
+├── sale.html                       # 분양안내 페이지
+├── CLAUDE.md                       # 프로젝트 가이드 (본 문서)
+├── Asset/                          # 이미지 리소스
+│   ├── 조감도.png, 조감도6.png, 조감도8.png
+│   ├── 49실내.png, 59실내.png
+│   ├── 49인테리어 *.png (8개)
+│   ├── 59인테리어 *.png (9개)
+│   ├── 1지구 이미지.png, 2지구 이미지.png
 │   └── 공사 한글로고(개정)-좌우조합.png
-├── 요구사항_최종수정사항.md
-├── 예시 참고 페이지.html
-├── 예시 참고 페이지2.html
-└── 예시 참고 페이지3.html
+├── fullPage.js-2.9.7/             # fullPage.js 라이브러리 (로컬)
+└── backup/                         # 백업 폴더
+    ├── 20260602_172440/
+    ├── 20260602_redesign/
+    └── 20260611_interior_gallery/  # 최신 백업
 ```
 
 ---
 
-**최종 수정일**: 2026-05-28
-**현재 버전**: 1.2.0
+## 🎨 현재 디자인 시스템
+
+### 컬러 스킴 (Premium Navy & Champagne Gold)
+```css
+:root {
+    --primary-color: #1B2A4E;           /* Deep Navy - 공공기관 신뢰감 */
+    --primary-hover: #0F1933;           /* Darker Navy */
+    --primary-light: #E8EBF0;           /* Light Navy-Gray */
+    --accent-gold: #D4AF7A;             /* Champagne Gold */
+    --accent-soft-gold: #E8D4B8;        /* Soft Gold */
+    --accent-navy-gray: #E8EBF0;        /* Navy-Gray Tint */
+    --dark-color: #1a1a1a;
+    --gray-color: #666;
+    --light-gray: #f8f9fa;
+}
+```
+
+### Gradient 규칙
+- **모든 gradient는 135도 각도로 통일**
+- VR 섹션: `linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 50%, var(--accent-gold) 100%)`
+- Footer: `linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%)`
+
+### 헤더 구조 (모든 페이지 공통)
+```css
+.headerWrap {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header {
+    max-width: 1900px;
+    padding: 20px 80px 20px 40px;
+    display: grid;
+    grid-template-columns: 500px 1fr 150px;
+    gap: 40px;
+}
+```
+
+---
+
+## 📄 페이지별 구조
+
+### index.html (메인 페이지)
+- **fullPage.js 2.9.7** 적용 (jQuery 기반)
+- 5개 섹션: 메인 비주얼, 단지정보, VR, 로케이션, Footer
+- 좌측 네비게이션 도트 (섹션별 이동)
+- 모바일(768px)에서 일반 스크롤로 전환
+- 네이버 지도 API 연동 (Client ID: `nticxunj9s`)
+
+### about.html (사업안내)
+- 사업개요, 사업위치, 입주자격 섹션
+- AOS 애니메이션 적용
+- 카드형 레이아웃
+
+### unit.html (단지정보)
+- 1지구/2지구 탭 전환
+- 층별 세대 구성표 (테이블 형식)
+- 핵심 특징 체크리스트
+
+### plan.html (세대안내) ⭐ 최신 업데이트
+- **4개 메인 탭**: 평면도, 인테리어, 사이버 모델하우스, 마감재
+- **평면도 탭**: 49타입/59타입 서브탭 (상세 제원 테이블)
+- **인테리어 탭**:
+  - Swiper 갤러리 (17개 이미지)
+  - 중앙 슬라이드 강조 (큰 사진 + 작은 사진들)
+  - 무한 루프, 자동 재생
+- **VR 탭**: 아이콘 그리드, CTA 버튼
+- **마감재 탭**: 상세 마감재 테이블
+
+### sale.html (분양안내)
+- 분양일정: 수직 타임라인 (alternating layout)
+- 입주자모집공고: 컬러 박스 레이아웃
+- 청약안내: 가로 프로세스 플로우 (STEP 1-6)
+
+---
+
+## 🎯 주요 기능 및 라이브러리
+
+### 사용 중인 라이브러리 (CDN)
+```html
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Animation -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Naver Maps API -->
+<script src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=nticxunj9s"></script>
+
+<!-- jQuery (fullPage.js 의존성) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+```
+
+### 로컬 라이브러리
+- **fullPage.js 2.9.7**: `fullPage.js-2.9.7/dist/jquery.fullpage.min.js`
+  - index.html에만 적용
+  - 섹션별 전체 스크롤
+  - 좌측 네비게이션 도트
+
+### Swiper 갤러리 설정 (plan.html 인테리어)
+```javascript
+new Swiper('.interior-swiper', {
+    slidesPerView: 1.2,
+    spaceBetween: 20,
+    centeredSlides: true,
+    loop: true,
+    loopedSlides: 17,
+    autoplay: { delay: 3000 },
+    slideToClickedSlide: true,
+    breakpoints: {
+        640: { slidesPerView: 2.5 },
+        1024: { slidesPerView: 3.5 },
+        1400: { slidesPerView: 4 }
+    }
+});
+```
+
+**Swiper 스타일 (입체감)**
+- 비활성 슬라이드: `scale(0.85)`, `opacity: 0.6`, 높이 350px
+- 활성 슬라이드: `scale(1)`, `opacity: 1`, 높이 500px
+
+---
+
+## 📝 디자인 변경 이력
+
+### Version 3.0.0 (2026-06-11)
+**[인테리어 갤러리 추가 + 컬러 스킴 변경]**
+
+**주요 변경사항:**
+1. **컬러 스킴 변경** (모든 페이지)
+   - Primary: #6B4E50 (갈색) → #1B2A4E (Premium Navy)
+   - Accent: #D4AF7A (Champagne Gold) 신규 추가
+   - 모든 gradient 135도로 통일
+
+2. **plan.html 구조 수정**
+   - type59를 floor-plan 내부 district-content로 재구조화
+   - 탭 전환 오류 해결 (main-tab-content 구조 정리)
+
+3. **인테리어 갤러리 추가** (plan.html)
+   - Swiper 슬라이더 적용 (17개 인테리어 이미지)
+   - 49타입 8개, 59타입 9개
+   - 중앙 슬라이드 강조 (큰 사진 + 양옆 작은 사진)
+   - 무한 루프, 자동 재생
+   - 탭 활성화 시 Swiper 초기화 (지연 로딩)
+
+4. **레이아웃 리디자인** (unit.html, plan.html, sale.html)
+   - 단조로운 카드 레이아웃 → 다양한 형식으로 개선
+   - 테이블, 타임라인, 프로세스 플로우, 넘버링 섹션 등
+
+**영향 범위:**
+- 모든 HTML 파일 (색상 변경)
+- plan.html (구조 수정, 갤러리 추가)
+- unit.html, sale.html (레이아웃 변경)
+
+**백업:**
+- `backup/20260611_interior_gallery/` - 전체 파일 백업 (44MB)
+
+**Git 커밋:**
+- `redesign: 단조로운 카드 레이아웃을 다양한 형식으로 개선` (cc266dc)
+- `style: Premium Navy & Champagne Gold 컬러 스킴으로 변경` (aeb152b)
+- `style: about.html 컬러 스킴 업데이트` (171910d)
+
+---
+
+### Version 2.0.0 (2026-05-30)
+**[fullPage.js 적용]**
+- fullPage.js 2.9.7 (jQuery 기반) 로컬 라이브러리 적용
+- 좌측 네비게이션 도트 추가
+- 섹션별 앵커 설정: home, unit, vr, location, footer
+- 모바일(768px 이하)에서 일반 스크롤로 전환
+
+---
+
+## ⚠️ 중요 규칙
+
+### 작업 전 체크사항
+1. **백업 필수**: Major 변경 시 `backup/YYYYMMDD_작업명/` 폴더 생성
+2. **커밋은 요청 시에만**: 사용자가 명시적으로 요청할 때만 Git 커밋
+3. **구조 변경 주의**: HTML 구조 변경 시 탭 시스템 확인 필수
+4. **색상 통일**: 모든 페이지 동일한 CSS 변수 사용
+5. **Gradient 각도**: 항상 135도 사용
+
+### 파일 수정 시 주의사항
+- **plan.html**: main-tab-content 구조 확인 (floor-plan 내부에 type49, type59)
+- **Swiper 초기화**: 탭 활성화 시점에 `initInteriorSwiper()` 호출
+- **색상 변경**: :root 변수 사용, 하드코딩 금지
+
+### 핵심 구조 (절대 변경 금지)
+
+#### 1. 헤더 그리드 구조 (모든 페이지 공통)
+```css
+.header {
+    display: grid;
+    grid-template-columns: 500px 1fr 150px;  /* 로고 | GNB | 전화 */
+    gap: 40px;
+}
+```
+
+#### 2. GNB 메뉴 구조
+```html
+<nav>
+    <ul id="gnb">
+        <li><a>사업안내</a></li>
+        <li><a>단지정보</a></li>
+        <li><a>세대안내</a></li>
+        <li><a>분양안내</a></li>
+    </ul>
+</nav>
+<div class="submenu-area">
+    <!-- 호버 시 전체 서브메뉴 표시 -->
+</div>
+```
+
+#### 3. plan.html 탭 구조 (매우 중요!)
+```html
+<!-- 평면도 메인 탭 -->
+<div class="main-tab-content active" id="floor-plan">
+    <div class="tab-navigation">
+        <button data-tab="type49">49타입</button>
+        <button data-tab="type59">59타입</button>
+    </div>
+    <div class="district-content active" id="type49">...</div>
+    <div class="district-content" id="type59">...</div>
+    </div>  <!-- tab-navigation 닫기 -->
+</div>
+
+<!-- 인테리어 메인 탭 -->
+<div class="main-tab-content" id="interior">
+    <div class="interior-gallery">
+        <div class="swiper interior-swiper">...</div>
+    </div>
+</div>
+```
+
+#### 4. Swiper 초기화 로직 (변경 금지)
+```javascript
+let interiorSwiper = null;
+function initInteriorSwiper() {
+    if (!interiorSwiper) {
+        interiorSwiper = new Swiper('.interior-swiper', {
+            slidesPerView: 1.2,
+            centeredSlides: true,
+            loop: true,
+            loopedSlides: 17,
+            // ... 나머지 설정
+        });
+    }
+}
+
+// 탭 클릭 시 호출
+if (mainTabId === 'interior') {
+    setTimeout(() => { initInteriorSwiper(); }, 100);
+}
+```
+
+---
+
+## 🔧 문제 해결 가이드
+
+### Swiper가 안 보일 때
+1. 탭이 hidden 상태에서 초기화되지 않았는지 확인
+2. `initInteriorSwiper()` 함수가 탭 클릭 시 호출되는지 확인
+3. 브라우저 콘솔에서 Swiper 관련 에러 확인
+
+### 탭 전환이 안 될 때
+1. `main-tab-content` 구조가 올바른지 확인
+2. `data-maintab` 속성과 `id` 값이 일치하는지 확인
+3. JavaScript 이벤트 리스너가 등록되었는지 확인
+
+### 색상이 적용 안 될 때
+1. `:root` 변수가 정의되어 있는지 확인
+2. `var(--primary-color)` 형식으로 사용했는지 확인
+3. 하드코딩된 색상 코드가 있는지 확인
+
+---
+
+**최종 수정일**: 2026-06-11
+**현재 버전**: 3.0.0
+**작성자**: Claude Code
