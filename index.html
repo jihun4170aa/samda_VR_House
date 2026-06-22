@@ -770,11 +770,11 @@
             padding: 60px 40px;
             border: 2px solid rgba(255, 255, 255, 0.2);
             text-align: center;
-            text-decoration: none;
             color: white;
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .vr-card::before {
@@ -1017,6 +1017,80 @@
             transform: rotate(90deg);
         }
 
+        /* VR 모달 */
+        .vr-modal {
+            display: none;
+            position: fixed;
+            z-index: 99999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .vr-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vr-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1400px;
+            height: 85vh;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            animation: zoomIn 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vr-modal-content h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .vr-modal-content iframe {
+            flex: 1;
+            width: 100%;
+            border-radius: 10px;
+            background: #f0f0f0;
+        }
+
+        .vr-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .vr-modal-close:hover {
+            background: var(--accent-gold);
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
@@ -1227,6 +1301,25 @@
 
             .vr-card p {
                 font-size: 16px;
+            }
+
+            .vr-modal-content {
+                width: 95%;
+                height: 90vh;
+                padding: 15px;
+            }
+
+            .vr-modal-content h3 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .vr-modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+                top: -10px;
+                right: -10px;
             }
 
             /* 모바일에서 좌우 스크롤 방지 */
@@ -1596,23 +1689,23 @@
             </div>
 
             <div class="vr-cards" data-aos="fade-up" data-aos-delay="200">
-                <a href="https://ttdesign-jk.synology.me/VR/20260622/49/index.htm" target="_blank" class="vr-card">
+                <div class="vr-card" data-vr-url="https://ttdesign-jk.synology.me/VR/20260622/49/index.htm" data-vr-title="49타입 VR 투어">
                     <div class="vr-icon">
                         <i class="fas fa-vr-cardboard"></i>
                     </div>
                     <h3>49 TYPE</h3>
                     <p>49평형 VR 투어</p>
                     <span class="vr-badge">360° VR</span>
-                </a>
+                </div>
 
-                <a href="https://ttdesign-jk.synology.me/VR/20260622/59/index.htm" target="_blank" class="vr-card">
+                <div class="vr-card" data-vr-url="https://ttdesign-jk.synology.me/VR/20260622/59/index.htm" data-vr-title="59타입 VR 투어">
                     <div class="vr-icon">
                         <i class="fas fa-vr-cardboard"></i>
                     </div>
                     <h3>59 TYPE</h3>
                     <p>59평형 VR 투어</p>
                     <span class="vr-badge">360° VR</span>
-                </a>
+                </div>
             </div>
         </div>
     </div>
@@ -1685,6 +1778,15 @@
         <div class="image-modal-content">
             <button class="image-modal-close" id="modalClose">&times;</button>
             <img id="modalImage" src="" alt="확대 이미지">
+        </div>
+    </div>
+
+    <!-- VR 모달 -->
+    <div class="vr-modal" id="vrModal">
+        <div class="vr-modal-content">
+            <button class="vr-modal-close" id="vrModalClose">&times;</button>
+            <h3 id="vrModalTitle"></h3>
+            <iframe id="vrIframe" src="" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -1961,6 +2063,51 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape' && imageModal.classList.contains('active')) {
                 imageModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        // VR 모달
+        const vrModal = document.getElementById('vrModal');
+        const vrModalClose = document.getElementById('vrModalClose');
+        const vrIframe = document.getElementById('vrIframe');
+        const vrModalTitle = document.getElementById('vrModalTitle');
+        const vrCards = document.querySelectorAll('.vr-card');
+
+        // VR 카드 클릭 시 모달 열기
+        vrCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const vrUrl = this.getAttribute('data-vr-url');
+                const vrTitle = this.getAttribute('data-vr-title');
+
+                vrIframe.src = vrUrl;
+                vrModalTitle.textContent = vrTitle;
+                vrModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // 닫기 버튼 클릭
+        vrModalClose.addEventListener('click', function() {
+            vrModal.classList.remove('active');
+            vrIframe.src = ''; // iframe 정지
+            document.body.style.overflow = '';
+        });
+
+        // 배경 클릭 시 닫기
+        vrModal.addEventListener('click', function(e) {
+            if (e.target === vrModal) {
+                vrModal.classList.remove('active');
+                vrIframe.src = '';
+                document.body.style.overflow = '';
+            }
+        });
+
+        // ESC 키로 VR 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && vrModal.classList.contains('active')) {
+                vrModal.classList.remove('active');
+                vrIframe.src = '';
                 document.body.style.overflow = '';
             }
         });
