@@ -2108,22 +2108,14 @@
         // 닫기 버튼 클릭
         modalClose.addEventListener('click', function() {
             imageModal.classList.remove('active');
-            document.body.style.overflow = ''; // 스크롤 복원
+            document.body.style.overflow = 'auto'; // 스크롤 복원
         });
 
         // 배경 클릭 시 닫기
         imageModal.addEventListener('click', function(e) {
             if (e.target === imageModal) {
                 imageModal.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // ESC 키로 닫기
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-                imageModal.classList.remove('active');
-                document.body.style.overflow = '';
+                document.body.style.overflow = 'auto';
             }
         });
 
@@ -2151,7 +2143,7 @@
         vrModalClose.addEventListener('click', function() {
             vrModal.classList.remove('active');
             vrIframe.src = ''; // iframe 정지
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'auto';
         });
 
         // 배경 클릭 시 닫기
@@ -2159,16 +2151,22 @@
             if (e.target === vrModal) {
                 vrModal.classList.remove('active');
                 vrIframe.src = '';
-                document.body.style.overflow = '';
+                document.body.style.overflow = 'auto';
             }
         });
 
-        // ESC 키로 VR 모달 닫기
+        // ESC 키로 모달 닫기 (통합)
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && vrModal.classList.contains('active')) {
-                vrModal.classList.remove('active');
-                vrIframe.src = '';
-                document.body.style.overflow = '';
+            if (e.key === 'Escape') {
+                if (imageModal.classList.contains('active')) {
+                    imageModal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+                if (vrModal.classList.contains('active')) {
+                    vrModal.classList.remove('active');
+                    vrIframe.src = '';
+                    document.body.style.overflow = 'auto';
+                }
             }
         });
     </script>
