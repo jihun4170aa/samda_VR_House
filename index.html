@@ -1245,10 +1245,13 @@
                 align-items: center !important;
             }
 
-            /* 메인 비주얼 이미지 - 전체 보이기 */
+            /* 메인 비주얼 이미지 - 세로로 길게 */
             .main_visual img {
-                object-fit: contain !important;
-                object-position: center;
+                object-fit: cover !important;
+                width: auto !important;
+                height: 100% !important;
+                left: 50% !important;
+                transform: translateX(-50%);
             }
 
             .visual-text h1 {
