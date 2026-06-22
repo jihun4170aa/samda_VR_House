@@ -1218,6 +1218,13 @@
                 justify-content: flex-start;
             }
 
+            /* 모바일에서 섹션 높이 자동 조정 (스크롤바 제거) */
+            .section-inner {
+                height: auto !important;
+                min-height: 100vh;
+                padding: 80px 0;
+            }
+
             .visual-text h1 {
                 font-size: 36px;
             }
@@ -1242,8 +1249,7 @@
             }
 
             .unit_wrap {
-                padding-top: 60px;
-                padding-bottom: 60px;
+                padding: 20px;
             }
 
             .unit-card {
