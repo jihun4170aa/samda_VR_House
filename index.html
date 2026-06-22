@@ -1235,23 +1235,24 @@
 
             /* 메인 비주얼 높이 조정 */
             .main_visual {
-                min-height: 80vh;
+                min-height: 70vh;
             }
 
             .main_visual .section-inner {
-                min-height: 80vh;
+                min-height: 70vh;
                 display: flex !important;
                 justify-content: center !important;
                 align-items: center !important;
             }
 
-            /* 메인 비주얼 이미지 - 세로로 길게 */
+            /* 메인 비주얼 이미지 - 화면 꽉 채우기 */
             .main_visual img {
                 object-fit: cover !important;
-                width: auto !important;
+                object-position: center center;
+                width: 100% !important;
                 height: 100% !important;
-                left: 50% !important;
-                transform: translateX(-50%);
+                left: 0 !important;
+                transform: none !important;
             }
 
             .visual-text h1 {
