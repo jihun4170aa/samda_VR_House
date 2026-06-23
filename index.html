@@ -502,8 +502,9 @@
             border: none;
         }
 
-        .fab-main-button.active {
-            transform: rotate(45deg);
+        .fab-main-button.active i {
+            transform: rotate(180deg);
+            transition: transform 0.3s;
         }
 
         .fab-sub-buttons {
@@ -1651,7 +1652,7 @@
             </a>
         </div>
         <button class="fab-main-button" id="fabMainButton">
-            <i class="fas fa-plus"></i>
+            <i class="fas fa-chevron-up"></i>
         </button>
     </div>
 
