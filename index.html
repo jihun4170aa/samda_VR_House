@@ -1458,44 +1458,44 @@
             }
 
             /* 모바일에서 Swiper 비활성화, 세로 스크롤로 변경 */
+            /* 모바일에서도 Swiper 슬라이더 유지 */
             .unit_slider {
                 max-width: 100%;
                 padding: 0 20px;
-            }
-
-            .unit_slider .swiper-wrapper {
-                display: block !important;
-                transform: none !important;
-            }
-
-            .unit_slider .swiper-slide {
-                width: 100% !important;
-                margin-bottom: 30px;
-                padding: 0;
             }
 
             .unit-card {
                 max-width: 100%;
                 margin: 0 auto;
                 border-radius: 15px;
-                overflow: visible;
             }
 
             .unit-card img {
-                height: auto;
-                max-height: 300px;
+                height: 300px;
+                object-fit: contain;
             }
 
             .unit-info {
                 padding: 20px;
-                overflow: visible;
             }
 
-            /* 모바일에서 Swiper 컨트롤 숨김 */
-            .swiper-button-next,
-            .swiper-button-prev,
-            .swiper-pagination {
+            .unit-info h3 {
+                font-size: 24px;
+            }
+
+            .unit-info p {
+                font-size: 14px;
+            }
+
+            /* 모바일에서 네비게이션 버튼만 숨김 */
+            .unit_slider .swiper-button-next,
+            .unit_slider .swiper-button-prev {
                 display: none !important;
+            }
+
+            /* 페이지네이션은 표시 */
+            .unit_slider .swiper-pagination {
+                bottom: 10px !important;
             }
 
             /* 로케이션 섹션 모바일 최적화 */
