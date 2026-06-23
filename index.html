@@ -2163,6 +2163,26 @@
                 }
             }
         });
+
+        // 퀵메뉴 클릭 이벤트 (fullPage.js 섹션 이동)
+        document.querySelectorAll('.quick ul li a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const anchor = this.getAttribute('href').substring(1); // #home → home
+
+                // fullPage.js가 활성화된 경우 (데스크톱)
+                if (typeof fullpage_api !== 'undefined') {
+                    fullpage_api.moveTo(anchor);
+                } else {
+                    // fullPage.js가 비활성화된 경우 (모바일) - 일반 스크롤
+                    const targetSection = document.getElementById('section' +
+                        (['home', 'vr', 'unit', 'location', 'footer'].indexOf(anchor) + 1));
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html>
