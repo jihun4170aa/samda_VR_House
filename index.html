@@ -477,6 +477,84 @@
             }
         }
 
+        /* Mobile FAB Menu */
+        .mobile-fab-menu {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9997;
+        }
+
+        .fab-main-button {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            box-shadow: 0 5px 25px rgba(27, 42, 78, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            font-size: 24px;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .fab-main-button.active {
+            transform: rotate(45deg);
+        }
+
+        .fab-sub-buttons {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+        }
+
+        .fab-sub-buttons.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .fab-sub-button {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 18px;
+            transition: all 0.3s;
+            transform: scale(0);
+        }
+
+        .fab-sub-buttons.active .fab-sub-button {
+            transform: scale(1);
+        }
+
+        .fab-sub-button:nth-child(1) { transition-delay: 0.05s; }
+        .fab-sub-button:nth-child(2) { transition-delay: 0.1s; }
+        .fab-sub-button:nth-child(3) { transition-delay: 0.15s; }
+        .fab-sub-button:nth-child(4) { transition-delay: 0.2s; }
+        .fab-sub-button:nth-child(5) { transition-delay: 0.25s; }
+
+        .fab-sub-button span {
+            font-size: 9px;
+            margin-top: 2px;
+        }
+
         /* Quick Menu */
         .quick {
             position: fixed;
@@ -1181,8 +1259,18 @@
             }
 
             /* 플로팅 버튼 표시 */
+            /* 모바일에서 기존 퀵메뉴 숨김 */
+            .quick {
+                display: none !important;
+            }
+
+            /* 모바일 FAB 메뉴 */
             .floating-call {
                 display: flex;
+            }
+
+            .mobile-fab-menu {
+                display: block;
             }
 
             /* fullPage.js 네비게이션 모바일 스타일 */
@@ -1537,6 +1625,35 @@
     <a href="tel:1588-0000" class="floating-call">
         <i class="fas fa-phone-alt"></i>
     </a>
+
+    <!-- 모바일 FAB 메뉴 -->
+    <div class="mobile-fab-menu">
+        <div class="fab-sub-buttons" id="fabSubButtons">
+            <a href="#home" class="fab-sub-button" data-fab-action="home">
+                <i class="fas fa-home"></i>
+                <span>HOME</span>
+            </a>
+            <a href="#vr" class="fab-sub-button" data-fab-action="vr">
+                <i class="fas fa-vr-cardboard"></i>
+                <span>VR</span>
+            </a>
+            <a href="#unit" class="fab-sub-button" data-fab-action="unit">
+                <i class="fas fa-th-large"></i>
+                <span>평면도</span>
+            </a>
+            <a href="#location" class="fab-sub-button" data-fab-action="location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>입지환경</span>
+            </a>
+            <a href="tel:1588-0000" class="fab-sub-button">
+                <i class="fas fa-phone-alt"></i>
+                <span>전화</span>
+            </a>
+        </div>
+        <button class="fab-main-button" id="fabMainButton">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
 
     <!-- Header -->
     <header class="headerWrap" id="header_gnb">
@@ -2183,6 +2300,43 @@
                 }
             });
         });
+
+        // 모바일 FAB 메뉴 토글
+        const fabMainButton = document.getElementById('fabMainButton');
+        const fabSubButtons = document.getElementById('fabSubButtons');
+
+        if (fabMainButton && fabSubButtons) {
+            fabMainButton.addEventListener('click', function() {
+                this.classList.toggle('active');
+                fabSubButtons.classList.toggle('active');
+            });
+
+            // FAB 서브 버튼 클릭 시 섹션 이동
+            document.querySelectorAll('.fab-sub-button[data-fab-action]').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const anchor = this.getAttribute('data-fab-action');
+
+                    const targetSection = document.getElementById('section' +
+                        (['home', 'vr', 'unit', 'location'].indexOf(anchor) + 1));
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+
+                    // 메뉴 닫기
+                    fabMainButton.classList.remove('active');
+                    fabSubButtons.classList.remove('active');
+                });
+            });
+
+            // 외부 클릭 시 메뉴 닫기
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.mobile-fab-menu')) {
+                    fabMainButton.classList.remove('active');
+                    fabSubButtons.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 </html>
