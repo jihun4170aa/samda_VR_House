@@ -766,7 +766,7 @@
         .vr-content {
             text-align: center;
             max-width: 1000px;
-            padding: 80px 40px;
+            padding: 150px 40px 80px 40px;  /* 상단 150px */
             margin: 0 auto;
             display: flex;
             flex-direction: column;
@@ -835,7 +835,7 @@
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             border-radius: 30px;  /* 20px → 30px */
-            padding: 120px 80px;  /* 60px 40px → 120px 80px (2배) */
+            padding: 0px 80px;  /* 60px 40px → 120px 80px (2배) */
             border: 3px solid rgba(255, 255, 255, 0.25);  /* 2px → 3px */
             text-align: center;
             color: white;
@@ -1398,6 +1398,7 @@
             .vr-card {
                 padding: 30px 20px;
                 overflow: visible;
+                min-height: 300px;  /* 모바일 최소 높이 */
             }
 
             .vr-icon {
