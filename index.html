@@ -418,31 +418,7 @@
             visibility: visible;
         }
 
-        /* fullPage.js 네비게이션 커스텀 */
-        #fp-nav {
-            z-index: 9998;
-        }
 
-        #fp-nav ul li a span,
-        #fp-nav ul li .fp-tooltip {
-            background: var(--primary-color);
-        }
-
-        #fp-nav ul li a.active span,
-        #fp-nav ul li:hover a.active span {
-            background: var(--primary-color);
-            width: 14px;
-            height: 14px;
-        }
-
-        #fp-nav ul li a span {
-            background: rgba(107, 78, 80, 0.3);
-        }
-
-        #fp-nav ul li .fp-tooltip {
-            font-family: 'Noto Sans KR', sans-serif;
-            color: white;
-        }
 
         /* 플로팅 전화 버튼 */
         .floating-call {
@@ -1972,8 +1948,7 @@
                 // Navigation
                 navigation: true,
                 navigationPosition: 'left',
-                navigationTooltips: ['메인', '단지정보', 'VR', '로케이션', 'Footer'],
-                showActiveTooltip: true,
+                showActiveTooltip: false,  // 툴팁 제거, 점만 표시
                 anchors: ['home', 'vr', 'unit', 'location', 'footer'],
 
                 // Scrolling
