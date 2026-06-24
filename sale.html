@@ -62,15 +62,14 @@
             margin: 0 auto;
             padding: 20px 80px 20px 40px;
             display: grid;
-            grid-template-columns: 500px 1fr 150px;
-            gap: 40px;
+            grid-template-columns: 500px repeat(4, 1fr) 150px;  /* 서브메뉴와 동일한 6컬럼 */
             align-items: center;
+            gap: 40px;
         }
 
         .logo {
             height: 50px;
             width: 200px;
-            padding-right: 500px;
             z-index: 10;
         }
 
@@ -79,26 +78,30 @@
             padding: 0px;
         }
 
+        /* GNB 메뉴 */
+        nav {
+            display: contents;  /* nav를 투명하게 */
+        }
+
         #gnb {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
+            display: contents;  /* ul을 투명하게 - li들이 .header의 직접 자식처럼 배치 */
             list-style: none;
         }
 
         #gnb > li {
             position: relative;
-            text-align: center;
         }
 
         #gnb > li > a {
-            display: block;
-            padding: 10px 0;
-            color: var(--dark-color);
             text-decoration: none;
-            font-weight: 500;
+            color: var(--dark-color);
             font-size: 16px;
+            font-weight: 500;
             transition: all 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: block;
+            width: 100%;  /* li의 전체 너비 차지 */
             text-align: center;
         }
 
@@ -134,17 +137,15 @@
             margin: 0 auto;
             padding: 10px 80px 10px 40px;
             display: grid;
-            grid-template-columns: 500px 1fr 150px;
+            grid-template-columns: 500px repeat(4, 1fr) 150px;  /* GNB와 동일하게 6컬럼 */
             gap: 40px;
         }
 
         .submenu-columns-wrapper {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            display: contents;  /* 그리드 구조 flatten */
         }
 
         .submenu-column {
-            min-width: 200px;
             text-align: center;
         }
 
@@ -197,6 +198,7 @@
         }
 
         .tag {
+            grid-column: 6;  /* 6번째 컬럼 (150px) */
             display: flex;
             gap: 20px;
             align-items: center;
@@ -1331,15 +1333,13 @@
                                         <li><a href="unit.html#birdview">단지조감도</a></li>
                                         <li><a href="unit.html#layout">단지배치도</a></li>
                                         <li><a href="unit.html#dong">동호수배치도</a></li>
-                                        <li><a href="unit.html#community">커뮤니티</a></li>
                                     </ul>
                                 </div>
                                 <div class="submenu-column">
                                     <ul>
                                         <li><a href="plan.html#floor-plan">평면도</a></li>
                                         <li><a href="plan.html#interior">인테리어</a></li>
-                                        <li><a href="plan.html#vr">사이버 모델하우스</a></li>
-                                        <li><a href="plan.html#material">마감재</a></li>
+                                        <li><a href="plan.html#vr">모델하우스</a></li>
                                     </ul>
                                 </div>
                                 <div class="submenu-column">
@@ -1390,7 +1390,6 @@
                     <li><a href="unit.html#birdview">단지조감도</a></li>
                     <li><a href="unit.html#layout">단지배치도</a></li>
                     <li><a href="unit.html#dong">동호수배치도</a></li>
-                    <li><a href="unit.html#community">커뮤니티</a></li>
                 </ul>
             </li>
             <li>
@@ -1401,8 +1400,7 @@
                 <ul class="mobile-sub-menu">
                     <li><a href="plan.html#floor-plan">평면도</a></li>
                     <li><a href="plan.html#interior">인테리어</a></li>
-                    <li><a href="plan.html#vr">사이버 모델하우스</a></li>
-                    <li><a href="plan.html#material">마감재</a></li>
+                    <li><a href="plan.html#vr">모델하우스</a></li>
                 </ul>
             </li>
             <li>
