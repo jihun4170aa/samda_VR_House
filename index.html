@@ -1688,9 +1688,95 @@
                 padding: 60px 20px;
             }
 
-            /* 원형 화살표 표시 (모바일만) */
-            .circular-arrow {
+            /* 데스크톱 타임라인 숨김, 모바일 스와이퍼 표시 */
+            .horizontal-timeline {
+                display: none !important;
+            }
+
+            .timeline-swiper-wrapper {
                 display: block !important;
+                margin: 30px 0;
+            }
+
+            /* 타임라인 카드 */
+            .timeline-step-card {
+                background: white;
+                border-radius: 12px;
+                padding: 20px 15px;
+                box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+                border: 1px solid #f0f0f0;
+                min-height: 180px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .step-badge {
+                display: inline-block;
+                font-size: 10px;
+                font-weight: 700;
+                color: var(--primary-color);
+                background: var(--primary-light);
+                padding: 4px 10px;
+                border-radius: 10px;
+                margin-bottom: 12px;
+                letter-spacing: 0.5px;
+                align-self: flex-start;
+            }
+
+            .card-icon {
+                width: 45px;
+                height: 45px;
+                background: var(--primary-color);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 0 12px 0;
+                flex-shrink: 0;
+            }
+
+            .card-icon i {
+                font-size: 20px;
+                color: white;
+            }
+
+            .card-title {
+                font-size: 18px;
+                font-weight: 700;
+                color: var(--dark-color);
+                margin-bottom: 8px;
+            }
+
+            .card-date {
+                font-size: 14px;
+                font-weight: 600;
+                color: var(--dark-color);
+                margin-bottom: 6px;
+            }
+
+            .card-desc {
+                font-size: 12px;
+                color: var(--gray-color);
+                line-height: 1.4;
+            }
+
+            /* Swiper 스타일 */
+            .timeline-card-swiper {
+                padding-bottom: 40px;
+            }
+
+            .timeline-card-swiper .swiper-pagination-bullet {
+                width: 8px;
+                height: 8px;
+                background: var(--gray-color);
+                opacity: 0.3;
+            }
+
+            .timeline-card-swiper .swiper-pagination-bullet-active {
+                background: var(--primary-color);
+                opacity: 1;
+                width: 24px;
+                border-radius: 4px;
             }
 
             /* 원형 타임라인 레이아웃 - 최대 크기 */
@@ -2327,6 +2413,60 @@
                 </div>
             </div>
 
+            <!-- 모바일 스와이프 카드 -->
+            <div class="timeline-swiper-wrapper" style="display: none;">
+                <div class="swiper timeline-card-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="timeline-step-card">
+                                <span class="step-badge">STEP 1</span>
+                                <div class="card-icon"><i class="fas fa-bullhorn"></i></div>
+                                <h3 class="card-title">입주자 모집공고</h3>
+                                <p class="card-date">2026. 07. 15</p>
+                                <p class="card-desc">공고문 · 자격요건 확인</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="timeline-step-card">
+                                <span class="step-badge">STEP 2</span>
+                                <div class="card-icon"><i class="fas fa-edit"></i></div>
+                                <h3 class="card-title">청약 접수</h3>
+                                <p class="card-date">2026. 08. 03 ~ 08. 07</p>
+                                <p class="card-desc">인터넷 추첨 접수</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="timeline-step-card">
+                                <span class="step-badge">STEP 3</span>
+                                <div class="card-icon"><i class="fas fa-trophy"></i></div>
+                                <h3 class="card-title">당첨자 발표</h3>
+                                <p class="card-date">2026. 08. 21</p>
+                                <p class="card-desc">개별 통보 · 홈페이지 공지</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="timeline-step-card">
+                                <span class="step-badge">STEP 4</span>
+                                <div class="card-icon"><i class="fas fa-file-signature"></i></div>
+                                <h3 class="card-title">계약 체결</h3>
+                                <p class="card-date">2026. 09. 07 ~ 09. 11</p>
+                                <p class="card-desc">구비서류 지참</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="timeline-step-card">
+                                <span class="step-badge">STEP 5</span>
+                                <div class="card-icon"><i class="fas fa-key"></i></div>
+                                <h3 class="card-title">입주 예정</h3>
+                                <p class="card-date">2028. 03 (예정)</p>
+                                <p class="card-desc">준공 후 순차 입주</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
             <div class="cta-box" data-aos="fade-up" data-aos-delay="200">
                 <div class="cta-box-content">
                     <h4><i class="fas fa-info-circle"></i> 자세한 청약 자격과 절차가 궁금하신가요?</h4>
@@ -2459,42 +2599,28 @@
             disable: true  // fullPage.js 사용 시 AOS 비활성화
         });
 
-        // 모바일 원형 타임라인 클릭 이벤트
+        // 모바일 타임라인 카드 스와이퍼
         if (window.innerWidth <= 900) {
-            const timelineSteps = document.querySelectorAll('.timeline-step');
-            const centerInfo = document.querySelector('.timeline-center-info');
-            const centerDefault = document.querySelector('.center-default');
-            const centerDetail = document.querySelector('.center-detail');
-
-            if (timelineSteps.length > 0 && centerInfo) {
-                timelineSteps.forEach((step) => {
-                    step.addEventListener('click', function() {
-                        const label = this.querySelector('.timeline-step-label').textContent;
-                        const title = this.querySelector('.timeline-step-title').textContent;
-                        let date = this.querySelector('.timeline-step-date').textContent;
-
-                        // 날짜 형식 간소화 (2026. 제거)
-                        date = date.replace(/2026\.\s*/g, '').replace(/\s*~\s*/g, '~');
-
-                        centerDetail.innerHTML = `
-                            <div class="step-num">${label}</div>
-                            <div class="step-title">${title}</div>
-                            <div class="step-date">${date}</div>
-                        `;
-
-                        centerDefault.style.display = 'none';
-                        centerDetail.style.display = 'block';
-                        centerInfo.classList.add('active'); // 중앙 원 확장
-                    });
-                });
-
-                // 중앙 원 클릭 시 원래대로
-                centerInfo.addEventListener('click', function() {
-                    centerDefault.style.display = 'block';
-                    centerDetail.style.display = 'none';
-                    centerInfo.classList.remove('active'); // 중앙 원 축소
-                });
-            }
+            const timelineCardSwiper = new Swiper('.timeline-card-swiper', {
+                slidesPerView: 1.3,
+                spaceBetween: 12,
+                centeredSlides: false,
+                loop: false,
+                pagination: {
+                    el: '.timeline-card-swiper .swiper-pagination',
+                    clickable: true,
+                },
+                breakpoints: {
+                    480: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 15,
+                    },
+                    640: {
+                        slidesPerView: 2,
+                        spaceBetween: 15,
+                    }
+                }
+            });
         }
 
         // Swiper 초기화
