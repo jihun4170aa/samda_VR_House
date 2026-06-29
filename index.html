@@ -598,9 +598,14 @@
 
         .main_visual .section-inner {
             position: relative;
+            justify-content: flex-end;
+            align-items: flex-start;
+            padding-left: 80px;
+            padding-bottom: 80px;
         }
 
-        .main_visual img {
+        .main_visual img,
+        .main_visual video {
             position: absolute;
             top: 0;
             left: 0;
@@ -613,7 +618,7 @@
 
         .visual-text {
             position: relative;
-            text-align: center;
+            text-align: left;
             color: white;
             z-index: 10;
         }
@@ -625,8 +630,8 @@
             letter-spacing: 3px;
             font-family: 'Noto Sans KR', sans-serif;
             text-shadow:
-                3px 3px 6px rgba(0, 0, 0, 0.8),
-                0px 0px 30px rgba(0, 0, 0, 0.5);
+                2px 2px 8px rgba(0, 0, 0, 0.85),
+                0 0 20px rgba(0, 0, 0, 0.6);
         }
 
         .visual-text p {
@@ -634,8 +639,31 @@
             font-weight: 400;
             letter-spacing: 1px;
             text-shadow:
-                2px 2px 4px rgba(0, 0, 0, 0.8),
-                0px 0px 20px rgba(0, 0, 0, 0.5);
+                2px 2px 6px rgba(0, 0, 0, 0.85),
+                0 0 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 메인 비주얼 통계 */
+        .visual-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 60px;
+        }
+
+        .visual-stat strong {
+            display: block;
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--accent-gold);
+            margin-bottom: 6px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.85);
+        }
+
+        .visual-stat span {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--accent-soft-gold);
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.85);
         }
 
         /* Unit 섹션 */
@@ -1484,12 +1512,16 @@
                 height: 100vh !important;
                 min-height: 100vh !important;
                 display: flex !important;
-                justify-content: center !important;
-                align-items: center !important;
+                justify-content: flex-end !important;
+                align-items: flex-start !important;
+                padding-left: 30px !important;
+                padding-right: 20px !important;
+                padding-bottom: 50px !important;
             }
 
-            /* 메인 비주얼 이미지 - 양쪽 잘라서 크게 */
-            .main_visual img {
+            /* 메인 비주얼 이미지/영상 - 양쪽 잘라서 크게 */
+            .main_visual img,
+            .main_visual video {
                 object-fit: cover !important;
                 object-position: center center;
                 width: 100% !important;
@@ -1504,6 +1536,20 @@
 
             .visual-text p {
                 font-size: 16px;
+            }
+
+            .visual-stats {
+                margin-top: 36px;
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .visual-stat strong {
+                font-size: 20px;
+            }
+
+            .visual-stat span {
+                font-size: 12px;
             }
 
             .section-header h2 {
@@ -1563,7 +1609,7 @@
             }
 
             .section-header span {
-                font-size: 14px;
+                font-size: 18px;
             }
 
             .vr-placeholder {
@@ -2245,11 +2291,25 @@
         <!-- Main Visual -->
         <div class="section main_visual" id="section1">
         <div class="section-inner">
-            <img src="Asset/조감도.png" alt="조감도">
+            <video src="Asset/삼도이동 공공주택_1.mp4" poster="Asset/조감도.png" autoplay muted playsinline></video>
             <div class="visual-text" data-aos="fade-up" data-aos-duration="1500">
                 <h1>삼도이동</h1>
                 <h1>토지 임대부 분양주택</h1>
-                <p>더 현실적인 내 집 마련의 새로운 기준</p>
+                <p>토지는 임대로, 건물만 분양받는 합리적인 내 집 마련</p>
+                <div class="visual-stats">
+                    <div class="visual-stat">
+                        <strong>총 72세대</strong>
+                        <span>49타입 16 · 59타입 56</span>
+                    </div>
+                    <div class="visual-stat">
+                        <strong>토지임대부</strong>
+                        <span>합리적인 분양 방식</span>
+                    </div>
+                    <div class="visual-stat">
+                        <strong>제주 원도심</strong>
+                        <span>삼도이동 입지</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -2258,10 +2318,11 @@
         <div class="section vr-section" id="section2">
         <div class="vr-content">
             <div data-aos="fade-up">
-                <p class="vr-subtitle">CYBER MODEL HOUSE</p>
-                <h2>360° VR 모델하우스</h2>
+                <p class="vr-subtitle">360° VIRTUAL TOUR</p>
+                <h2>VR 모델하우스</h2>
                 <p class="vr-description">
-                    생생한 가상현실로 미리 경험하는 우리집 — 방문 없이 집에서 모든 공간을 둘러보세요.
+                    생생한 가상현실로 미리 경험하는 우리집<br> 
+                    방문 없이 집에서 모든 공간을 둘러보세요.
                 </p>
             </div>
 
@@ -2299,11 +2360,10 @@
         <div class="section unit-section" id="section3">
         <div class="unit_wrap">
             <div class="section-header" data-aos="fade-up">
-                <p>완벽한 공간 설계</p>
-                <h2>UNIT PLAN</h2>
+                <p>UNIT INFORMATION</p>
+                <h2>세대 안내</h2>
                 <span>
-                    프리미엄 라이프 스타일을 더해<br>
-                    품격 있는 삶을 디자인합니다.
+                    총 72세대 · 49타입과 59타입
                 </span>
             </div>
 
