@@ -2371,7 +2371,7 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="unit-card">
-                            <img src="Asset/49실내.png" alt="49타입">
+                            <img src="Asset/49실내.png" alt="49타입" data-plan="Asset/49평면도.png">
                             <div class="unit-info">
                                 <h3>49 TYPE</h3>
                                 <p>넓은 거실과 효율적인 공간 배치로 설계된<br>49평형 프리미엄 주거공간</p>
@@ -2380,7 +2380,7 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="unit-card">
-                            <img src="Asset/59실내.png" alt="59타입">
+                            <img src="Asset/59실내.png" alt="59타입" data-plan="Asset/59평면도.png">
                             <div class="unit-info">
                                 <h3>59 TYPE</h3>
                                 <p>여유로운 공간 활용과 프라이버시를 고려한<br>59평형 특화 설계</p>
@@ -2868,10 +2868,10 @@
         const modalClose = document.getElementById('modalClose');
         const unitImages = document.querySelectorAll('.unit-card img');
 
-        // 평면도 이미지 클릭 시 모달 열기
+        // 세대 카드 클릭 시 평면도 이미지 모달 열기
         unitImages.forEach(img => {
             img.addEventListener('click', function() {
-                modalImage.src = this.src;
+                modalImage.src = this.getAttribute('data-plan') || this.src;
                 imageModal.classList.add('active');
                 document.body.style.overflow = 'hidden'; // 스크롤 방지
             });
